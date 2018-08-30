@@ -1,0 +1,220 @@
+﻿@model IEnumerable<ProductType>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+
+    <title>主页 - 蜀之鼎网站后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/dashboard.css" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">蜀之鼎网站后台管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>欢迎！@ViewBag.username</a></li>
+                    <li><a href="Exit">退出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="~/Manage/Index"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;新 闻</a></li>
+                <li><a href="~/Manage/Gsjj"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司简介</a></li>
+                <li><a href="~/Manage/Culture"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司文化</a></li>
+                <li><a href="~/Manage/Recruit"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;招 聘</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;解决方案</a></li>
+                <li><a href="~/Manage/SolutionType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案类型</a></li>
+                <li><a href="~/Manage/Solution">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案信息</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;产品中心</a></li>
+                <li class="active"><a href="~/Manage/ProductType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品类型</a></li>
+                <li><a href="~/Manage/Product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2>产品类型 | PRODUCT TYPE</h2>
+            <hr align="left" style="background-color:lightblue;height:3px;border:none;width:10%;" />
+            <button class="btn btn-success" onclick="add();">添 加</button>&nbsp;<button onclick="editType(nowID);" class="btn btn-info">编 辑</button>&nbsp;<button onclick="deleteType(nowID);" class="btn btn-danger">删 除</button>
+            <br /><br />
+            <table class="table table-hover" id="table1">
+                <thead>
+                    <tr>
+                        <th>产品类型名</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="tr@(item.ID)">
+                            <td>@item.Type</td>
+                            <td>@item.Remark</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var editTypeName;
+        var editTypeRemark;
+        var flag = 1;
+        var nowID;
+        var isNowEdit = 1;
+        var flagAndEdit = 1;
+
+        function add() {
+            $("tbody").append("<tr id='temp'><td><input id='tempTypeName' type='text' class='form-control' style='width:50%' placeholder='添加的类型名'></td><td><input id='tempTypeRemark' type='text' class='form-control' style='width:50%' placeholder='备注'></td><td><button class='btn btn-default' onclick='save()'>保存</button><button class='btn btn-default' onclick='cancel();'>取消</button></td></tr>");
+        }
+
+        function cancel() {
+            $("#temp").remove();
+        }
+
+        function save() {
+            var TypeName = $("#tempTypeName").val();
+            var TypeRemark = $("#tempTypeRemark").val();
+            if (TypeName == "") {
+                alert("产品类型名不能为空");
+            }
+            $.ajax({
+                method: "POST",
+                url : "AddProductType",
+                data: {
+                    "TypeName": TypeName,
+                    "TypeRemark" : TypeRemark
+                },
+                success: function () {
+                    location.href = "";
+                },
+                error: function () {
+                    alert("保存失败");
+                }
+            });
+        }
+
+        function deleteType(nowID) {
+            if (nowID != null) {
+                if (confirm("您确定要删除吗？")) {
+                    $.ajax({
+                        method: "POST",
+                        url: "DeleteProductType",
+                        data: {
+                            "ID": nowID
+                        },
+                        success: function () {
+                            location.href = "";
+                        },
+                        error: function () {
+                            alert("删除失败");
+                        }
+                    });
+                }
+                else {
+                    return;
+                }
+            } else {
+                alert("请先选中");
+            }
+        }
+
+        function editType(nowID) {
+            if (nowID != null) {
+                flagAndEdit = 0;
+                if (isNowEdit == 1) { //只允许当前有一个元素处于修改状态
+                    editTypeName = $('#' + nowID).children(':first').html();
+                    editTypeRemark = $('#' + nowID + " td:nth-child(2)").html();
+                    editTypeRemark = editTypeRemark == "无" ? "" : editTypeRemark;
+
+                    $("#" + nowID).children(':first').html("<input class='form-control' style='width:50%' type='text' value='" + editTypeName + "'/>");
+                    $("#" + nowID + " td:nth-child(2)").html("<input class='form-control' style='width:50%' type='text' value='" + editTypeRemark + "'/>");
+                    $("#" + nowID).append("<td><button onclick='saveEdit(nowID);' class='btn btn-default'>保存</button><button onclick='restore(nowID);' class='btn btn-default'>取消</button></td>");
+
+                    isNowEdit = 0;
+                }
+            } else {
+                alert("请先选中");
+            }
+        }
+
+        function restore(nowID) {
+            $("#" + nowID).children(':first').html(editTypeName);
+            $("#" + nowID + " td:nth-child(2)").html(editTypeRemark==""?"无":editTypeRemark);
+            $("#" + nowID + " td:eq(2)").remove();
+            isNowEdit = 1;
+            flagAndEdit = 1;
+        }
+
+        function saveEdit(nowID) {
+            var TypeName = $("#" + nowID + " td:nth-child(1) input").val();
+            var TypeRemark = $("#" + nowID + " td:nth-child(2) input").val();
+            $.ajax({
+                method: "POST",
+                url : "SaveProductType",
+                data: {
+                    "nowID" : nowID,
+                    "TypeName": TypeName,
+                    "TypeRemark": TypeRemark
+                },
+                success: function () {
+                    flagAndEdit = 0;
+                    location.href = "";
+                },
+                error: function () {
+                    alert("编辑失败");
+                }
+            });
+        }
+
+        $("tbody tr").click(function () {
+            if (flagAndEdit == 1) {
+                if (flag == 0)   //有别的tr被选中
+                {
+                    $("tbody tr").removeAttr("style");
+                    $(this).css("background-color", "#FFE4B5");
+                    nowID = $(this).attr("id"); //获取当前选中的解决方案类型的ID值
+
+                    return;
+                }
+                $(this).css("background-color", "#FFE4B5");  //没有别的tr被选中，直接设置颜色
+                flag = 0;
+                nowID = $(this).attr("id");
+            }
+        });
+
+        $("tbody tr").dblclick(function () {
+            editType(nowID);
+        });
+
+    </script>
+</body>
+
+</html>

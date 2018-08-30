@@ -1,0 +1,93 @@
+﻿@model SZD.WebSite.Model.Company
+
+@{
+    
+}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=6UfckguUlLy1yazjwlutPSXuzk2GhgLc"></script>
+
+<link rel="stylesheet" href="~/css/Other_pages.css" />
+<link rel="stylesheet" href="~/css/about.css" />
+
+
+
+<div id="allmap" style="height:430px;width:100%"></div>
+
+<div class="solution">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li class="active">
+                <a href="#gsjj" data-toggle="tab">
+                    公司简介
+                </a>
+            </li>
+            <li><a href="#qywh" data-toggle="tab">企业文化</a></li>
+            <li><a href="#rczp" data-toggle="tab">人才招聘</a></li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="container">
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="gsjj">
+            <br />
+            <br />
+            @Html.Raw(Model.Introduction)
+            <br />
+            <br />
+        </div>
+        <div class="tab-pane fade" id="qywh">
+            <br />
+            <br />
+            @Html.Raw(Model.Culture)
+            <br />
+            <br />
+
+        </div>
+        <div class="tab-pane fade" id="rczp">
+            <br />
+            <br />
+            @Html.Raw(Model.Recruit)
+            <br />
+            <br />
+        </div>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(104.200062, 30.815676);
+    map.centerAndZoom(point, 20);
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    var opts = {
+        width: 200,     // 信息窗口宽度
+        height: 50,     // 信息窗口高度
+        title: "成都蜀之鼎环保科技有限公司", // 信息窗口标题
+    }
+    var infoWindow = new BMap.InfoWindow("地址：成都市新都区新都街道兴乐北路88号缤纷广场3栋514", opts);  // 创建信息窗口对象 
+    marker.addEventListener("click", function () {
+        map.openInfoWindow(infoWindow, point); //开启信息窗口
+    });
+    var opts = {
+        position: point,    // 指定文本标注所在的地理位置
+        offset: new BMap.Size(30, -30)    //设置文本偏移量
+    }
+    var label = new BMap.Label("成都蜀之鼎环保科技有限公司", opts);  // 创建文本标注对象
+    label.setStyle({
+        color: "red",
+        fontSize: "12px",
+        height: "24px",
+        lineHeight: "24px",
+        color: "#079f3a",
+        border: "none",
+        background: "none",
+        fontFamily: "微软雅黑"
+    });
+    map.addOverlay(label);
+  
+    </script>

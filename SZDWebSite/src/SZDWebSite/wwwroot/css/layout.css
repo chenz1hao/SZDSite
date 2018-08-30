@@ -1,0 +1,231 @@
+﻿*{
+    padding:0;
+    margin:0;
+}
+li{
+    list-style-type:none;
+}
+.center-text {
+    text-align: center;
+}
+.img-center{
+    vertical-align:middle;
+    text-align:center
+}
+a:hover{
+    text-decoration:none;
+    
+}
+.body-title:after, 
+.body-title:after{
+   
+}
+.body-title:after,
+.body-title:after{
+     background: url(../../images/bg-heading.png);
+    position: relative;
+    left: 18px;
+    content: "";
+    display: inline-block;
+    width: 200%;
+    height: 0.75em;
+    margin: 0 -200% 0 0;
+}
+.body-title{
+    overflow:hidden;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+/*导航*/
+
+.render-body {
+    position: relative;
+    top:90px;
+}
+.fl-l{
+    float:left
+}
+.fl-r{
+    float:right
+}
+.top-text{
+    background:#000000;
+    color:#858d91;
+}
+
+.szd-navbar {
+    background: white;
+    -moz-box-shadow: 0px 2px 10px #888888;
+    -webkit-box-shadow: 0px 2px 10px #888888;
+    box-shadow: 0px 2px 10px #888888;
+}
+
+.navbar-brand {
+    line-height: 80px;
+    height: 80px;
+}
+
+    .navbar-brand img {
+        width: auto;
+        height: 48px;
+        display: block;
+    }
+
+.szd-nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: white;
+}
+
+.nav-acitve {
+    border-bottom: 2px solid #079f3a;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 80px;
+    height: 80px;
+    color: #079f3a;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    border-bottom: 2px solid #079f3a;
+    color: #079f3a;
+}
+
+
+.szd-banner {
+    top: 0;
+}
+
+/*页脚*/
+footer{
+    background:url(../images/map-base.png) center no-repeat #21252b;
+}
+footer .container{
+    padding:40px 0 20px; 
+}
+footer p{
+    color:white;
+    font-weight:bold;
+} 
+footer ul{
+     margin:18px;
+}
+footer li{
+    color:#858d91;
+   margin:10px;
+    display:block;
+}
+footer li strong,footer h6{
+    color:#ccccd5;
+}
+.footer-ul li .fa{
+    color:#079f3a;
+}
+.footer{
+    background:#000000;
+    padding:10px 0;
+    margin:0;
+    color:white;
+}
+
+
+
+/* 小屏幕（平板，小于 992） */
+@media (max-width:992px) {
+    .render-body {
+        position: relative;
+        top: 70px;
+    }
+
+
+    .navbar-brand {
+        line-height: 50px;
+        height: 50px;
+        padding: 10px 0 10px 0;
+    }
+
+        .navbar-brand img {
+            height: 28px;
+        }
+
+    .navbar-nav > li > a {
+        line-height: 50px;
+        height: 50px;
+    }
+
+    .index-row {
+        padding: 20px 0 40px 0;
+    }
+}
+
+/* 超小屏幕（手机，小于 768px） */
+
+@media (max-width:768px) {
+    .render-body {
+        position: relative;
+        top: 0;
+    }
+
+    .navbar-brand {
+        line-height: 40px;
+        height: 40px;
+        padding: 10px 0 10px 0;
+    }
+
+        .navbar-brand img {
+            height: 24px;
+        }
+
+    .navbar-nav > li > a {
+        line-height: 40px;
+        height: 40px;
+    }
+
+    .index-row {
+        padding: 0px 0 20px 0;
+    }
+
+        .index-row p {
+            font-size: 12px;
+        }
+
+    .index-title {
+        margin-bottom: 20px;
+    }
+
+        .index-title h2 {
+            font-size: 24px;
+        }
+
+        .index-title h3 {
+            font-size: 20px;
+        }
+
+    .about-img {
+        margin-top: 30px;
+    }
+
+    .szd-logo, .ewm {
+        display: none;
+    }
+
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        position: relative;
+        top: 0;
+        margin-bottom: 0;
+    }
+
+    .ny-banner {
+        position: relative;
+    }
+}
+
+@media (max-width:420px) {
+    .szd-logo, .ewm {
+        display: none;
+    }
+}

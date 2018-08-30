@@ -1,0 +1,241 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+
+    <title>添加产品 - 蜀之鼎网站后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/dashboard.css" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <!-- UEditor JS -->
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="~/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="~/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">蜀之鼎网站后台管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>欢迎！@ViewBag.username</a></li>
+                    <li><a href="Exit">退出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="~/Manage/Index"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;新 闻</a></li>
+                <li><a href="~/Manage/Gsjj"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司简介</a></li>
+                <li><a href="~/Manage/Culture"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司文化</a></li>
+                <li><a href="~/Manage/Recruit"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;招 聘</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;解决方案</a></li>
+                <li><a href="~/Manage/SolutionType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案类型</a></li>
+                <li><a href="~/Manage/Solution">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案信息</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;产品中心</a></li>
+                <li><a href="~/Manage/ProductType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品类型</a></li>
+                <li class="active"><a href="~/Manage/Product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2>添加产品 | ADD SOLUTION</h2>
+            <hr align="left" style="background-color:lightblue;height:3px;border:none;width:10%;" />
+
+            <div class="input-group" style="width:800px">
+                <span class="input-group-addon">产品名称</span>
+                <input id="name" type="text" class="form-control" onblur="isRepeat();">
+            </div>
+            <span style="color:red" id="repeatTxt"></span>
+            <br>
+            <div class="input-group" style="width:400px">
+                <span class="input-group-addon">所属类型</span>
+                <select style="height:28px;" id="type" onchange="getCount();">
+                    <option value="null">----请选择所属类型----</option>
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item"> @item</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <form id="imageForm" method="post" enctype="multipart/form-data" action="UploadImage">
+                <div class="input-group" style="width:400px">
+                    <span class="input-group-addon">封面图片</span>
+                    <input type="file" name="image" id="image" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="uploadPic();" />
+                </div>
+            </form>
+            <img id="previewImage" style="width:250px" src="">
+            <br /><br />
+            <div class="input-group" style="width:800px">
+                <span class="input-group-addon">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</span>
+                <select style="height:28px;" id="sortNumber" onchange="changeTxt();">
+                    <option value="null">请先选择所属类型</option>
+                </select> <span style="color:gray"> * 表示期望添加在第<span id="num">1</span>条</span>
+            </div>
+            <br />
+            <script id="editor" type="text/plain" style="width:800px;height:250px;">
+            </script>
+            <br>
+            <button id="addBtn" onclick="add();" class="btn btn-success">确定添加</button> <a href="Product"><button id="publishCancelBtn" class="btn btn-info">取消</button></a>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.form.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        var imageBytes = null;
+        var productCount;
+
+
+        $("#image").change(function () {
+            var url = getLocalUrl(this.files[0]);
+            if (url) { //选择了图片时预览效果
+                $("#previewImage").attr("src", url);
+            } else {  //取消选择图片时移除src属性
+                $("#previewImage").removeAttr("src");
+            }
+        });
+
+        function getLocalUrl(file) {
+            var url = null
+            if (file) {
+                if (window.createObjectURL != undefined) {
+                    url = window.createObjectURL(file)
+                } else if (window.URL != undefined) {
+                    url = window.URL.createObjectURL(file)
+                } else if (window.webkitURL != undefined) {
+                    url = window.webkitURL.createObjectURL(file)
+                }
+            }
+            return url;
+        }
+
+        function add() {
+            var productName = $("#name").val();
+            var productType = $("#type").val();
+            var productHTML = ue.getContent();
+            if (productName == "") {
+                alert("产品名称不能为空");
+            } else if (productType == "") {
+                alert("请选择所属的产品类型");
+            } else if (productHTML == "") {
+                alert("产品详情不能为空");
+            } else if ($("#image").val().length == 0) {
+                alert("请选择产品的封面图片");
+            } else {
+                $.ajax({
+                    url: "PublishProduct",
+                    method: "POST",
+                    data: {
+                        "productName": productName,
+                        "productType": productType,
+                        "productHTML": productHTML,
+                        "productImage": imageBytes,
+                        "productSort": $("#sortNumber").val()
+                    },
+                    success: function () {
+                        alert("添加成功");
+                        location.href = "Product";
+                    },
+                    error: function () {
+                        alert("添加失败");
+                    }
+                });
+            }
+        }
+
+        function uploadPic() {
+            var options = {
+                url: "UploadImage",
+                type: "post",
+                dataType: "json",
+                success: function (bytes) {
+                    imageBytes = bytes;
+                }
+            };
+            $("#imageForm").ajaxSubmit(options);
+        }
+
+        function changeTxt() {
+            $("#num").html($("#sortNumber").val());
+        }
+
+        function getCount() {
+            var productType = $("#type").val()
+            if (productType != "null") {
+                $.ajax({
+                    url: "GetProductCount",
+                    method: "POST",
+                    data:{
+                        "productTypeName": productType
+                    },
+                    success: function (data) {
+                        productCount = data;
+                        changeList();
+                    },
+                    error: function () {
+
+                    }
+                });
+            } else {
+                $("#sortNumber").html("<option>请先选择所属类型</option>");
+            }
+        }
+
+        function changeList() {
+            var html = "";
+            for (var i = 1; i <= (productCount+1); i++) {
+                html += "<option value='" + i + "'>" + i + "</option>";
+            }
+            $("#sortNumber").html(html);
+        }
+
+        function isRepeat() {
+            $.ajax({
+                method: "POST",
+                url: "IsProductRepeat",
+                data: {
+                    "ProductName": $("#name").val()
+                },
+                success: function (flag) {
+                    if (flag == true) {
+                        $("#repeatTxt").html(" * 这个产品名称已经使用！");
+                    } else {
+                        $("#repeatTxt").html("");
+                    }
+                },
+                error: function () {
+                    alert("错误");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

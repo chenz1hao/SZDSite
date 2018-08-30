@@ -1,0 +1,120 @@
+﻿.padding-40{
+    padding:40px 0;
+}
+.pi-has-bg{
+    font-weight:bold;
+}	
+.readmore-btn{
+    margin-top:40px;
+    float:left;
+    border:1px solid #3A9B58;
+    border-radius:5px;
+    padding:4px 10px;
+}
+a{
+   color:#3A9B58;
+}
+/*进度条*/
+.progress_bar .pro-bar {
+		background: hsl(0, 0%, 97%);
+		box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.1) inset;
+		height:40px;
+        line-height:40px;
+       border-radius:5px;
+		margin-bottom: 12px;
+		margin-top:16px;
+		position: relative;
+      
+	}
+	.progress_bar .progress_bar_title{
+		color: #D5D6E2;
+		font-size: 15px;
+		font-weight: 300;
+		position: relative;
+		top: -28px;
+		z-index: 1;
+	}
+	.progress_bar .progress_number{
+		float: right;
+		margin-top: -24px;
+	}
+	.progress_bar .progress-bar-inner {
+		background-color: hsl(0, 0%, 88%);
+		display: block;
+		width: 0;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: width 1s linear 0s;
+		animation: animate-positive 2s;
+        border-radius:5px;
+	}
+    .pro-bar span b {
+          padding-left:20px;
+           color:white;
+           font-weight:normal;
+    }
+    .pro-bar img{
+        width:24px;
+        height:24px;
+        margin-right:10px;
+    }
+	@-webkit-keyframes animate-positive{
+		0% { width: 0%; }
+	}
+	@keyframes animate-positive{
+		0% { width: 0%; }
+	}
+
+
+
+    .gg{
+        background:#3A9B58;
+        color:white;
+    }
+    .jsfw{
+        padding-top:40px;
+    }
+    .jsfw-icon{
+        color: #079f3a;
+        width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30px;
+    line-height: 30px;
+    margin-top: 3px;
+    float: left;
+    transition: all 0.3s ease-in-out;
+    }
+    .jsfw-icon:hover{
+        color:#ff6a00
+    }
+    .jsfw-text{
+        margin-left: 50px;
+    }
+    .sl{
+            background-size: cover;
+    background-repeat: repeat-y;
+    background-position: 0 50%;
+    transition: none;
+    background-image: url(../images/index/new-york.png);
+   color:white;
+   background-attachment:fixed; 
+   padding:40px 0 20px;
+    }
+    .sl p{
+        color: rgba(250, 250, 250, 0.7);
+    }
+    .sl .timer{
+        font-size:50px;
+        padding:12px 0 8px;
+    }
+    .sl .img-center{
+        padding-bottom:20px;
+    }
+
+
+
+ 

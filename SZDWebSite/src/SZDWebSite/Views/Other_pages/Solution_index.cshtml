@@ -1,0 +1,117 @@
+﻿@model SZDWebSite.ViewModels.SolutionViewModel
+
+<link rel="stylesheet" href="~/css/Other_pages.css" />
+
+
+<style type="text/css">
+
+</style>
+
+
+
+<img class="ny-banner" src="~/images/banner4.png" style="width:100%" />
+
+
+<div class="solution">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#allsolution" data-toggle="tab"> 全部</a> </li>
+            @foreach (var item in Model.SolutionType)
+            {
+                <li><a href="#@item" data-toggle="tab">@item</a></li>
+            }
+            @*<li><a href="#sjapp" data-toggle="tab">手机app</a></li>
+            <li><a href="#znflxt" data-toggle="tab">智能分类系统</a></li>
+            <li><a href="#glapp" data-toggle="tab">管理app</a></li>*@
+
+
+
+        </ul>
+
+    </div>
+</div>
+<div class="container pi-section-white">
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade in active" id="allsolution">
+
+            <br>
+            <h4 class="body-title">
+                全部
+                </h4>
+                <div class="row">
+                    @foreach (var item in Model.Solution)
+                    {
+                        <div class="col-md-4 col-sm-6  ">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Manage/getImage?SolutionID=@item.ID">
+                                <div class="card-body">
+                                    <h4 class="card-title">@item.Name</h4>
+                                    <p class="card-text">@item.Desc</p>
+                                    <a href="~/Solution/Detail?id=@item.ID" class="btn btn-success">点击阅读</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="col-md-4 col-sm-6  ">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/solution_02.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">智能分类箱</h4>
+                            <p class="card-text">测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</p>
+                            <a href="#" class="btn btn-success">点击阅读</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6  ">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/solution_03.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">智能分类箱</h4>
+                            <p class="card-text">测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字字测试文字测试文字测试文字测试文字测试文</p>
+                            <a href="#" class="btn btn-success">点击阅读</a>
+                        </div>
+                    </div>
+                </div>*@
+
+                </div>
+</div>
+        @foreach (var item in Model.SolutionType)
+        {
+            <div class="tab-pane fade" id="@item">
+
+                <br>
+                <h4 class="body-title">
+                    @item
+                    </h4>
+                    <div class="row">
+                        @foreach (var everyItem in Model.Solution)
+                        {
+                            if (everyItem.SolutionTypes.Type.Equals(item))
+                            {
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="card">
+                                        <img class="card-img-top" src="~/Manage/getImage?SolutionID=@everyItem.ID">
+                                        <div class="card-body">
+                                            <h4 class="card-title">@everyItem.Name</h4>
+                                            <p class="card-text">@everyItem.Desc</p>
+                                            <a href="~/Solution/Detail?id=@everyItem.ID" class="btn btn-success">点击阅读</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+</div>
+        }
+        @*<div class="tab-pane fade" id="znflxt">
+
+        </div>
+        <div class="tab-pane fade" id="glapp">
+
+        </div>*@
+
+
+    </div>
+</div>
+

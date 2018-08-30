@@ -1,0 +1,97 @@
+﻿@model SZD.WebSite.Model.Product
+
+<link rel="stylesheet" href="~/css/product.css">
+
+
+
+<img class="ny-banner" src="~/images/banner4.png" style="width:100%" />
+<div class="container">
+    <br />
+    <br />
+    <div class="jjfan-title">
+      
+            <img src="~/images/dian.png" class="title-dian" />&nbsp;&nbsp;<b>@Model.Name</b>
+
+       
+        <ol class="breadcrumb fl-r">
+            <li><a href="~/Other_pages/Product_index">产品中心</a></li>
+            <li>@Model.ProductTypes.Type</li>
+            <li class="active">@Model.Name</li>
+        </ol>
+    </div>
+    <br />
+    <br />
+    @Html.Raw(Model.Html)
+    @*<p class="text-p">
+        当前全国“垃圾围城”形势严峻，垃圾分类回收实施异常困难，国家发展改革委、住房城乡建设部等制定发布了一系列的垃圾分类制度实施方案，重点推进垃圾分类要遵循的减量化、资源化、无害化原则，加速建立分类投放、分类收集、分类运输、分类处理的垃圾处理系统，实现垃圾分类和资源循环利用的综合效益。
+    </p>
+    <p class="text-p">
+        针对这种情况，为城市居民、企事业单位、政府部门、学校等建立“绿色账户”、“环保档案”，通过有效的激励约束机制，完善的垃圾处理收费制度，对正确投递垃圾的用户给予可兑换积分奖励，鼓励用户对“干垃圾”深入分类，将可回收物交由再生资源回收利用企业收运和处置。
+    </p>
+    <br />
+    <br />
+    <div class="row">
+
+
+        <div class="col-md-6 col-sm-6 col-xs-12 phone-text">
+
+            <div class="row hsx-row">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <img src="~/images/hsx-img1.png" class="image1" />
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <h4>定位功能</h4>
+                    <p>箱体设有GPS定位模块，产品安装后，开启智能设备，服务器可自动获得产品具体位置信息，用户可通过手机APP、微信公众号查找附近回收箱位置。</p>
+                </div>
+            </div>
+            <div class="row hsx-row">
+                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                    <img src="~/images/hsx-img2.png" class="image1" />
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <h4>语音提示功能</h4>
+                    <p>箱体设有语音提示，用户可根据语音提示进行投放操作，避免误操作。</p>
+                </div>
+            </div>
+            <div class="row hsx-row">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <img src="~/images/hsx-img3.png" class="image1" />
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <h4>温度/容量检测显示功能</h4>
+                    <p>
+                        箱体内有温度探头、超声波传感器，在箱体显示屏即时刷新显示，服务器会定时把桶信息推送给后台维护人员。
+                    </p>
+                </div>
+            </div>
+            <div class="row hsx-row">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <img src="~/images/hsx-img4.png" class="image1" />
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <h4>扫码投递装置</h4>
+                    <p>用户对垃圾进行分类后，可扫描垃圾袋上的二维码，等待投口自动打开，投递完毕后投口自动关闭。</p>
+                </div>
+            </div>
+            <div class="row hsx-row">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <img src="~/images/hsx-img5.png" class="image1" />
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <h4>自动投口防夹手装置</h4>
+                    <p>
+                        投口采用软连接结构，避免投口门关闭负人体造成危害。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <img src="~/images/recycling-bins.png" class="image1" />
+        </div>
+    </div>
+
+    <img src="~/images/hsx-gg.png" class="image4" />*@
+    <br />
+    <br />
+</div>

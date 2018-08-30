@@ -1,0 +1,160 @@
+﻿@model IEnumerable<SZDWebSite.ViewModels.ManageIndexView>
+@{
+    Layout = null;
+    int allPage = (ViewBag.newsCount%10)==0?(ViewBag.newsCount/10):(ViewBag.newsCount/10+1);
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+
+    <title>主页 - 蜀之鼎网站后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/dashboard.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">蜀之鼎网站后台管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>欢迎！@ViewBag.username</a></li>
+                    <li><a href="Exit">退出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="~/Manage/Index"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;新 闻</a></li>
+                <li><a href="~/Manage/Gsjj"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司简介</a></li>
+                <li><a href="~/Manage/Culture"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司文化</a></li>
+                <li><a href="~/Manage/Recruit"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;招 聘</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;解决方案</a></li>
+                <li><a href="~/Manage/SolutionType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案类型</a></li>
+                <li><a href="~/Manage/Solution">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案信息</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;产品中心</a></li>
+                <li><a href="~/Manage/ProductType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品类型</a></li>
+                <li><a href="~/Manage/Product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2>新 闻 | NEWS</h2>
+            <hr align="left" style="background-color:lightblue;height:3px;border:none;width:10%;" />
+            <a href="~/manage/PublishNews"><button class="btn btn-success">发布新闻</button></a><br /><br />
+            <div class="alert alert-info">请保证公司要闻、行业资讯分别至少有<strong>三条新闻内容</strong>，否则某些页面会报错！</div>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>发布时间</th>
+                            <th>类型</th>
+                            <th>发布人</th>
+                            <th>新闻描述</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int k = 0;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="width:20%">@Html.DisplayFor(m => item.Ntitle)</td>
+                                <td style="width:10%">@item.Ndate.Year-@(item.Ndate.Month/10==0?"0"+item.Ndate.Month:item.Ndate.Month.ToString())-@(item.Ndate.Day/10==0?"0"+item.Ndate.Day:item.Ndate.Day.ToString())</td>
+                                <td style="width:5%">
+                                    @if (item.Ntype == 1)
+                                    {
+                                        <p>公司要闻</p>
+                                    }
+                                    else if (item.Ntype == 2)
+                                    {
+                                        <p>行业资讯</p>
+                                    }
+                                </td>
+                                <td style="width:5%">@item.Nauthor</td>
+                                <td>@Html.DisplayFor(m => item.Ndesc)</td>
+                                <td>
+                                    <a href="~/manage/EditNews?id=@item.Nid"><button class="btn btn-info">编辑</button></a>
+                                    <input type="button" value="删除" onclick="del(@item.Nid);" class="btn btn-danger">
+                                </td>
+                            </tr>
+                            k++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination news-paging">
+                        <li>
+                            <a href="../Manage/Index?page=1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        @for (int i = 1; i <= allPage; i++)
+                        {
+                            if (ViewBag.tempPage == i)
+                            {
+                                <li class="active"><a href="Index?page=@(i)">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/Manage/Index?page=@(i)">@i</a></li>
+                            }
+
+                        }
+                        <li>
+                            <a href="~/Manage/Index?page=@allPage" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script>
+        function del(nid) {
+            var url = window.location.pathname;
+            var pathComponents = url.split('/');
+            url = "/" + pathComponents[1];
+            if (confirm("确定要删除这条新闻？")) {
+                location.href = "../manage/DeleteNews?id=" + nid;
+            }
+            else {
+                return;
+            }
+        }
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

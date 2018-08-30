@@ -1,0 +1,42 @@
+﻿@model SZDWebSite.ViewModels.NewsDetailModel
+@{
+    Layout = "~/Views/News/News_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/product.css">
+<div class="container">
+    <br />
+    <br />
+    <div class="jjfan-title">
+        <img class="title-dian" src="~/images/dian.png" />&nbsp;&nbsp;<b>@Model.ThisNews.Title</b>
+        <ol class="breadcrumb fl-r">
+            <li><a href="~/Other_pages/News_index">新闻动态</a></li>
+            <li>公司要闻</li>
+            <li class="active">@Model.ThisNews.Title</li>
+        </ol>
+    </div>
+    <br />
+    <br />
+    @Html.Raw(Model.ThisNews.Html)
+    <br />
+    <br />
+    <div class="page-title">
+        @if (Model.PreNews != null)
+        {
+            <p>上一篇：<a href="Gsyw?id=@Model.PreNews.ID">@Model.PreNews.Title</a></p>
+        }
+        else
+        {
+            <p>没有上一篇了</p>
+        }
+        @if (Model.NextNews != null)
+        {
+            <p>下一篇：<a href="Gsyw?id=@Model.NextNews.ID">@Model.NextNews.Title</a></p>
+        }
+        else
+        {
+            <p>没有下一篇了</p>
+        }
+    </div>
+    <br />
+    <br />
+</div>

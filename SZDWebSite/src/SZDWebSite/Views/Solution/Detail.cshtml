@@ -1,0 +1,26 @@
+﻿@model SZD.WebSite.Model.Solution
+
+<link rel="stylesheet" href="~/css/product.css">
+
+
+
+
+<img class="ny-banner" src="~/images/banner6.png" style="width:100%" />
+<div class="container">
+
+
+        <br />
+        <br />
+        <div class="jjfan-title">
+            <img class="title-dian" src="~/images/dian.png" />&nbsp;&nbsp;<b>@Model.Name</b>
+
+            <ol class="breadcrumb fl-r">
+                <li><a href="~/Other_pages/Solution_index">解决方案</a></li>
+                <li>@Model.SolutionTypes.Type</li>
+                <li class="active">@Model.Name</li>
+            </ol>
+        </div>
+        <br />
+        <br />
+        @Html.Raw(Model.Html)
+</div>

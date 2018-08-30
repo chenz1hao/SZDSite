@@ -1,0 +1,39 @@
+﻿@model SZDWebSite.ViewModels.NewsDetailModel
+@{
+    Layout = "~/Views/News/News_Layout.cshtml";
+}
+<div class="Zcfg">
+    <br />
+    <br />
+    <div class="news-title">
+        <img class="title-dian" src="~/images/dian.png" />&nbsp;&nbsp;<b>@Model.ThisNews.Ntitle</b>
+        <p style="float:right">您当前的位置： 首页 > 新闻动态 > 政策法规 ></p>
+    </div>
+    <div class="text-center news-p">
+        <b> 发布人:@Model.Author  @Model.ThisNews.Ndate.ToString("yyyy/MM/dd")</b>
+    </div>
+
+    @Html.Raw(Model.ThisNews.Nhtml)
+    <br />
+    <br />
+    <div class="page-title">
+        @if (Model.PreNews != null)
+        {
+            <p>上一篇：<a href="Zcfg?id=@Model.PreNews.Nid">@Model.PreNews.Ntitle</a></p>
+        }
+        else
+        {
+            <p>没有上一篇了</p>
+        }
+        @if (Model.NextNews != null)
+        {
+            <p>下一篇：<a href="Zcfg?id=@Model.NextNews.Nid">@Model.NextNews.Ntitle</a></p>
+        }
+        else
+        {
+            <p>没有下一篇了</p>
+        }
+    </div>
+    <br />
+    <br />
+</div>

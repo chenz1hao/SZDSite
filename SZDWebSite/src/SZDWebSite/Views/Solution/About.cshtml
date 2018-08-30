@@ -1,0 +1,84 @@
+﻿@model SZD.WebSite.Model.Company
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<link rel="stylesheet" href="~/css/SolutionStyle.css" />
+<style>
+
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=6UfckguUlLy1yazjwlutPSXuzk2GhgLc"></script>
+
+<div id="allmap" class="section-map" style=""></div>
+<div class="solution">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li class="active">
+                <a href="#gsjj" data-toggle="tab">
+                    公司简介
+                </a>
+            </li>
+            <li><a href="#qywh" data-toggle="tab">企业文化</a></li>
+            <li><a href="#rczp" data-toggle="tab">人才招聘</a></li>
+        </ul>
+
+    </div>
+</div>
+<div class="clear"></div>
+<div class="container">
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="gsjj">
+            <br />
+            <br />
+            @Html.Raw(Model.Introduction)
+            <br />
+            <br />
+        </div>
+        <div class="tab-pane fade" id="qywh">
+            <br />
+            <br />
+            @Html.Raw(Model.Culture)
+            <br />
+            <br />
+
+        </div>
+        <div class="tab-pane fade" id="rczp">
+            <br />
+            <br />
+            @Html.Raw(Model.Recruit)
+            <br />
+            <br />
+        </div>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");          // 创建地图实例
+    var point = new BMap.Point(104.200062, 30.815676);  // 创建点坐标
+    map.centerAndZoom(point, 20);                 // 初始化地图，设置中心点坐标和地图级别
+
+    //添加动画标注点
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+    //文本标注
+
+    var opts = {
+        width: 200,     // 信息窗口宽度
+        height: 50,     // 信息窗口高度
+        title: "成都蜀之鼎环保科技有限公司", // 信息窗口标题
+
+    }
+    //map.setMapStyle({ style: 'grayscale' });//地图样式
+
+
+    var infoWindow = new BMap.InfoWindow("地址：成都市新都区新都街道兴乐北路88号缤纷广场3栋514", opts);  // 创建信息窗口对象
+    marker.addEventListener("click", function () {
+        map.openInfoWindow(infoWindow, point); //开启信息窗口
+    });
+</script>

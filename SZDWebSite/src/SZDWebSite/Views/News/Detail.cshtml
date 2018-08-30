@@ -1,0 +1,40 @@
+﻿@model SZDWebSite.ViewModels.NewsDetailModel
+@{
+    Layout = "~/Views/News/News_Layout.cshtml";
+}
+<div class="Gsyw">
+    <br />
+    <br />
+    <link rel="stylesheet" href="~/css/product.css">
+    <div class="news-title">
+        <img class="title-dian" src="~/images/dian.png" />&nbsp;&nbsp;<b>@Model.ThisNews.Title</b>
+        <p style="float:right">您当前的位置： 首页 > 新闻动态 > @(Model.ThisNews.Type==1?"公司要闻":"行业资讯") ></p>
+    </div>
+    <div class="text-center news-p">
+        <b> 发布人:@Model.Author  @Model.ThisNews.Date.ToString("yyyy/MM/dd")</b>
+    </div>
+
+    @Html.Raw(Model.ThisNews.Html)
+    <br />
+    <br />
+    <div class="page-title">
+        @if (Model.PreNews != null)
+        {
+            <p>上一篇：<a href="Gsyw?id=@Model.PreNews.ID">@Model.PreNews.Title</a></p>
+        }
+        else
+        {
+            <p>没有上一篇了</p>
+        }
+        @if (Model.NextNews != null)
+        {
+            <p>下一篇：<a href="Gsyw?id=@Model.NextNews.ID">@Model.NextNews.Title</a></p>
+        }
+        else
+        {
+            <p>没有下一篇了</p>
+        }
+    </div>
+    <br />
+    <br />
+</div>

@@ -1,0 +1,213 @@
+﻿@model SZD.WebSite.Model.News
+@{
+    Layout = null;
+    string ntype;
+    if (Model.Type == 1)
+    {
+        ntype = "gsyw";
+    }
+    else if (Model.Type == 2)
+    {
+        ntype = "hyzx";
+    }
+    else
+    {
+        ntype = "zcfg";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="ChenZihao">
+    <title>编辑新闻 - 蜀之鼎网站后台</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/dashboard.css" rel="stylesheet">
+    <!-- UEditor JS -->
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="~/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="~/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">蜀之鼎网站后台管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>欢迎！@ViewBag.username</a></li>
+                    <li><a href="Exit">退出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="~/Manage/Index"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;新 闻</a></li>
+                    <li><a href="~/Manage/Gsjj"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司简介</a></li>
+                    <li><a href="~/Manage/Culture"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司文化</a></li>
+                    <li><a href="~/Manage/Recruit"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;招 聘</a></li>
+                    <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;解决方案</a></li>
+                    <li><a href="~/Manage/SolutionType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案类型</a></li>
+                    <li><a href="~/Manage/Solution">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案信息</a></li>
+                    <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;产品中心</a></li>
+                    <li><a href="~/Manage/ProductType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品类型</a></li>
+                    <li><a href="~/Manage/Product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品信息</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h2>新 闻 | NEWS</h2>
+                <hr align="left" style="background-color:lightblue;height:3px;border:none;width:10%;" />
+                <div class="input-group" style="width:800px">
+                    <span class="input-group-addon">新闻标题</span>
+                    <input id="ntitle" type="text" class="form-control" value="@Model.Title">
+                </div>
+                <br>
+                <div class="input-group" style="width:400px">
+                    <span class="input-group-addon">简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述</span>
+                    <input id="ndesc" type="text" class="form-control" value="@Model.Desc">
+                </div>
+                <br>
+                <div class="input-group" style="width:400px">
+                    <span class="input-group-addon">新闻类型</span>
+                    <select style="height:28px;" id="ntype">
+                        <option value="null">----请选择新闻类型----</option>
+                        <option value="gsyw"> 公司要闻</option>
+                        <option value="hyzx"> 行业资讯</option>
+                    </select>
+                </div>
+                <br />
+                <form id="imageForm" method="post" enctype="multipart/form-data" action="UploadImage">
+                    <div class="input-group" style="width:400px">
+                        <span class="input-group-addon">封面图片</span>
+                        <input type="file" name="image" id="image" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="uploadPic();" />
+                    </div>
+                </form>
+                <img id="previewImage" style="width:250px" src="~/Home/getImage?id=@Model.ID">
+                <br><br>
+                <div class="input-group" style="width:400px">
+                    <span class="input-group-addon">发布时间</span>
+                    <input id="newsDate" name="newsDate" type="date" value="@Model.Date.Year-@(Model.Date.Month/10==0?"0"+Model.Date.Month:Model.Date.Month.ToString())-@(Model.Date.Day/10==0?"0"+Model.Date.Day:Model.Date.Day.ToString())" />
+                </div>
+                <br />
+                <script id="editor" type="text/plain" style="width:800px;height:250px;">
+                    @Html.Raw(Model.Html)
+            </script>
+            <br>
+            <button onclick="send()" class="btn btn-success">确定修改</button> <a href="Index"><button class="btn btn-info">取消修改</button></a>
+        </div>
+    </div>
+</div>
+<input hidden="hidden" id="uusername" value="@ViewBag.username" />
+<input hidden="hidden" id="nid" value="@Model.ID" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.form.js"></script>
+<script type="text/javascript">
+        //select默认选中
+        $(function () {
+
+            $("#ntype").val("@ntype");
+        });
+        var imageBytes;
+        //实例化编辑器
+        var ue = UE.getEditor('editor');
+        function send() {
+            var title = $("#ntitle").val();
+            var html = ue.getContent();
+            var desc = $("#ndesc").val();
+            var type = $("#ntype").val();
+            var image = $("#image").val();
+            var date = $("#newsDate").val();
+            if (title == "") {
+                alert("新闻标题不能为空");
+            }else if (type == "null") {
+                alert("请选择新闻类型");
+            } else if (html == "") {
+                alert("新闻详情不能为空");
+            } else if(date == ""){
+                alert("请选择发布日期");
+            }else if(image.length == 0){ //没有改变封面图片时
+                $.ajax({
+                    type: "post",
+                    url: "EditNews",
+                    data: {
+                        "nid": $("#nid").val(),
+                        "html": html,
+                        "txt": ue.getContentTxt(),
+                        "title": title,
+                        "desc": desc,
+                        "type": type,
+                        "uusername": $("#uusername").val(),
+                        "date" : date
+                    },
+                    success: function (data) {
+                        alert("修改成功");
+                        location.href = "Index";
+                    }
+                });
+            } else { //改变了封面图片
+                $.ajax({
+                    type: "post",
+                    url: "EditNewsWithCover",
+                    data: {
+                        "nid": $("#nid").val(),
+                        "html": html,
+                        "txt": ue.getContentTxt(),
+                        "title": title,
+                        "desc": desc,
+                        "type": type,
+                        "uusername": $("#uusername").val(),
+                        "imageBytes" : imageBytes,
+                        "date" : date
+                    },
+                    success: function (data) {
+                        location.href = "Index";
+                    }
+                });
+            }
+        }
+
+        function uploadPic() {
+            var options = {
+                url: "UploadImage",
+                type: "post",
+                dataType: "json",
+                success: function (bytes) {
+                    imageBytes = bytes;
+                }
+            };
+            $("#imageForm").ajaxSubmit(options);
+        }
+        $("#image").change(function () {
+            var url = getLocalUrl(this.files[0]);
+            if (url) {
+                $("#previewImage").attr("src", url);
+            }
+        });
+        function getLocalUrl(file) {
+            var url = null
+            if (window.createObjectURL != undefined) {
+                url = window.createObjectURL(file)
+            } else if (window.URL != undefined) {
+                url = window.URL.createObjectURL(file)
+            } else if (window.webkitURL != undefined) {
+                url = window.webkitURL.createObjectURL(file)
+            }
+            return url;
+        }
+</script>
+</body>
+</html>

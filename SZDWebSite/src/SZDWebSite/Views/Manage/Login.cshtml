@@ -1,0 +1,41 @@
+﻿@model SZD.WebSite.Model.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>登录 - 蜀之鼎网站后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/signin.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="~/Manage/LoginAction" class="form-signin" method="post">
+            <h2 class="form-signin-heading">蜀之鼎网站后台管理</h2>
+            用户名
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            密码
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+            <br />
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录" onclick="" id="submitBtn">
+        </form>
+        @if (ViewBag.tips != null)
+        {
+            <p style="color:red; text-align:center">@ViewBag.tips</p>
+        }
+    </div>
+    <!-- /container -->
+</body>
+</html>

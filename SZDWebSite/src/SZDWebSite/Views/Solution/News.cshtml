@@ -1,0 +1,124 @@
+﻿@model SZDWebSite.ViewModels.NewsViewModel
+@{
+    //Layout = null;
+    int gsywCount = ViewBag.gsywCount;
+    int hyzxCount = ViewBag.hyzxCount;
+
+    int gsywPage = (gsywCount % 5 == 0) ? (gsywCount / 5) : (gsywCount / 5 + 1);
+    int hyzxPage = (hyzxCount % 5 == 0) ? (hyzxCount / 5) : (hyzxCount / 5 + 1);
+}
+<link rel="stylesheet" href="~/css/SolutionStyle.css" />
+
+
+<img class="ny-banner" src="~/images/banner5.png" style="width:100%" />
+<div class="solution">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs nav-justified">
+            <li class="active">
+                <a href="#gsdt" data-toggle="tab">
+                    公司动态
+                </a>
+            </li>
+            <li><a href="#hyzx" data-toggle="tab">行业资讯</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="gsdt">
+            <br />
+            <br />
+            <div id="gsywList"></div>
+            <div class="row">
+                <div id="gsywPagination"></div>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="tab-pane fade" id="hyzx">
+            <br />
+            <br />
+            <div id="hyzxList"></div>
+            <div class="row">
+                <div id="hyzxPagination"></div>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+    var gsywPage = 1;
+    var tempGsyw = 1;
+    var url = window.location.pathname;
+    var pathComponents = url.split('/');
+    url = "/" + pathComponents[1];
+    $(function () {
+        getGsyw(1);
+        getHyzx(1);
+    });
+    function getGsyw(page) {
+        $.ajax({
+            type: "post",
+            url: "GetGsyw?page=" + page,
+            data:{},
+            success: function (result) {
+                var html = "";
+                var gsywPagination = "";
+                for (var i = 0; i < result.news.length; i++) {
+                    var timeStr =  result.news[i].ndate;
+                    var yearStr = timeStr.substr(0, 4);
+                    var monthStr = timeStr.substr(5, 2);
+                    var dayStr = timeStr.substr(8, 2);
+                    timeStr = yearStr+"-"+monthStr +"-"+ dayStr;
+                    html += '<div class="row news-text"><p class="text6 news-text-left"><a href="../News/Gsyw?id=' + result.news[i].nid + '" class="news-a" target="_blank"><span class="arrowhead"><i class="fa fa-chevron-circle-right"></i></span>' + result.news[i].ntitle + '</a></p><p class="text6 news-text-right">'+ timeStr +'</p></div>'
+                }
+                gsywPagination += '<nav aria-label="Page navigation"><ul class="pagination news-paging"><li onclick="getGsyw(1)"><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+                for(var i=1; i <= @gsywPage; i++){
+                    if(i == result.page){
+                        gsywPagination += '<li class="active" onclick="getGsyw('+ i +')"><a>'+ i +'</a></li>';
+                    }else{
+                        gsywPagination += '<li onclick="getGsyw('+ i +')"><a>'+ i +'</a></li>';
+                    }
+                }
+                gsywPagination += '<li onclick="getGsyw('+ (i-1) +')"><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul></nav>';
+                $("#gsywList").html(html);
+                $("#gsywPagination").html(gsywPagination);
+            }
+        });
+    }
+    function getHyzx(page) {
+        $.ajax({
+            type: "post",
+            url: "GetHyzx?page=" + page,
+            data:{},
+            success: function (result) {
+                var html = "";
+                var hyzxPagination = "";
+                for (var i = 0; i < result.news.length; i++) {
+                    var timeStr =  result.news[i].ndate;
+                    var yearStr = timeStr.substr(0, 4);
+                    var monthStr = timeStr.substr(5, 2);
+                    var dayStr = timeStr.substr(8, 2);
+                    timeStr = yearStr+"-"+monthStr +"-"+ dayStr;
+                    html += '<div class="row news-text"><p class="text6 news-text-left"><a href="../../News/Hyzx?id=' + result.news[i].nid + '" class="news-a" target="_blank"><span class="arrowhead"><i class="fa fa-chevron-circle-right"></i></span>' + result.news[i].ntitle + '</a></p><p class="text6 news-text-right">' + timeStr + '</p></div>'
+                }
+                hyzxPagination += '<nav aria-label="Page navigation"><ul class="pagination news-paging"><li onclick="getHyzx(1)"><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+                for(var i=1; i <= @hyzxPage; i++){
+                    if(i == result.page){
+                        hyzxPagination += '<li class="active" onclick="getHyzx('+ i +')"><a>'+ i +'</a></li>';
+                    }else{
+                        hyzxPagination += '<li onclick="getHyzx('+ i +')"><a>'+ i +'</a></li>';
+                    }
+                }
+                hyzxPagination += '<li onclick="getHyzx('+ (i-1) +')"><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul></nav>';
+                $("#hyzxList").html(html);
+                $("#hyzxPagination").html(hyzxPagination);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SZD</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/layout.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    
+  
+ <link rel="stylesheet" href="~/css/font-awesome-ie7.min.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+</head>
+<body>
+    <div class="navbar navbar-fixed-top szd-navbar">
+        <div class="top-text">
+            <div class="container">
+                <span class="fl-l">欢迎光临成都蜀之鼎环保科技有限公司</span>
+                <span class="fl-r">028-83972295</span>
+            </div>
+        </div>
+
+        <nav class="navbar-default container szd-nav" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="~/home/index"><img src="~/images/szd.png" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                    <ul class="nav navbar-nav" style="float:right">
+                        <li><a href="~/home/index">首页</a></li>
+                        <li><a href="~/Other_pages/Solution_index">解决方案</a></li>
+                        <li><a href="~/Other_pages/Product_index">产品中心</a></li>
+                        <li><a href="~/Other_pages/News_index">新闻动态</a></li>
+                        <li><a href="~/Other_pages/About_index">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div class="render-body">
+
+        <div>
+            @RenderBody()
+        </div>
+      
+        <footer>
+            <div class="container">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <p>历史进程</p>
+                    <ul class="footer-ul">
+                        <li><i class="fa fa-check" aria-hidden="true"></i> 成立成都蜀之鼎环保科技有限公司 </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> 软件研发上线运行</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> 硬件研发实际部署</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <p>联系我们</p>
+                    <ul class="footer-ul">
+                        <li>
+                            <span><i class="fa fa-map-marker" aria-hidden="true" style="padding:0 2px;"></i></span>
+                            <strong>Address：</strong>成都市新都区新都街道兴乐北路88号1栋16层3号
+                        </li>
+                        <li>
+                            <span><i class="fa fa-phone" aria-hidden="true" style="padding:0 1px;"></i></span>
+                            <strong>Phone：</strong> 028-83972295
+                        </li>
+                        <li>
+                            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <strong>Email：</strong>szdtech@126.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <p>关注下载</p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="img-center">
+                                <img src="~/images/index/二维码.png" style="width:60%;height:60%;" />
+                                <h6>"熊猫ai分分"微信公众号</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="img-center">
+                                <img src="~/images/index/szd-yh.png" style="width:60%;height:60%;" />
+                                <h6>"熊猫ai分分"手机APP</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="footer center-text">
+                <span>
+                    &copy 2018&nbsp;成都蜀之鼎环保科技有限公司&nbsp;&nbsp;|&nbsp;&nbsp;蜀ICP备18006897号
+                </span>
+            </div>
+
+        </footer>
+   
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+
+
+
+
+    
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

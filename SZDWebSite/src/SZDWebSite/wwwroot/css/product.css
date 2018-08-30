@@ -1,0 +1,178 @@
+﻿.title-dian{
+    width:28px;
+    height:28px;
+    margin-bottom:6px;
+}
+.jjfan-title {
+    border-bottom:1px dashed #079f3a;
+    text-align:left;
+}
+.breadcrumb{
+    background:none;
+}
+.jjfan-title  b{
+    color:#079f3a;
+    font-size:20px;
+}
+.breadcrumb{
+    float:right;
+    background-color:none;
+}
+.text-p{
+    padding:10px 0;
+    text-indent:2em;
+    font-size:18px;
+}
+.phone-text{
+    margin:40px 0;
+}
+.title-kuai{
+     width:12px;
+    height:12px;
+}
+.sjAPP-title b{
+     color:#079f3a;
+}
+.sjAPP-title p{
+    margin:2px 0px 40px 20px;
+}
+.image1{
+    width:100%;
+}
+.image2{
+    width:100%;
+    margin:10px 0;
+}
+
+.app-down{
+    background:#f2f2f2;
+    padding:50px;
+    margin-bottom:50px;
+}
+.app-down b{
+    font-size:20px;
+    font-weight:normal;
+}
+.app-down .text-p{
+    font-size:16px;
+    padding:20px 0;
+}
+
+.pt-title p{
+    margin:2px 0px 10px 20px;
+}
+.pt-down{
+    background:url(../images/pt-bg.png) no-repeat bottom #69ae5b;
+     padding:20px;
+    margin-bottom:50px;
+}
+.pt-down h2{
+    
+}
+.down-text{
+    text-align:center;
+    color:white;
+    font-size:30px;
+    margin-top:40px;
+}
+.down-btn{
+    background:#509b40;
+    border:1px solid white;
+    border-radius:5px;
+    color:white;
+    padding:10px 80px;
+    font-size:28px;
+    margin-top:20px;
+}
+.btn:hover, .btn:focus, .btn.focus {
+     color:#cce6c7;
+}
+
+.image3{
+    width:48px;
+    height:48px;
+    margin-right:20px;
+}
+
+
+
+
+.hsx-row{
+   padding:10px 0;
+}
+.hsx-row h4{
+     color:#079f3a;
+    font-weight:bold;
+    margin-top:0;
+}
+.image4{
+    margin-bottom:50px;
+    width:100%;
+}
+
+
+.news-text {
+    border-bottom: 1px dashed #cccccc;
+    padding: 10px 20px;
+}
+.arrowhead {
+    margin-right: 5px;
+}
+.news-text-left {
+    float: left;
+}
+
+.news-text-right {
+    float: right;
+}
+.news-paging {
+    float: right;
+    margin-right: 50px;
+}
+
+.news-a {
+    color: #666;
+}
+.news-text p{
+    margin:0;
+}
+
+
+
+.Hyzx{
+
+}
+.news-title{
+    border-bottom:1px dashed #079f3a;
+}
+.news-title  b{
+    color:#079f3a;
+    font-size:20px;
+}
+ .news-p{
+     padding:20px 0; 
+     color:#666;
+ }
+ .text-h4{
+       color:#079f3a;
+ }
+ .page-title{
+      border-top:1px dashed #079f3a;
+      padding-top:10px;
+ }
+ .center-img{
+     text-align:center;
+ }
+
+ .section-map{
+     width:100%;
+     height:50%;
+ }
+ .rczp-title {
+    border-bottom:1px dashed #079f3a;
+    text-align:left;
+}
+.rczp-title  b{
+    color:#079f3a;
+    font-size:20px;
+}

@@ -1,0 +1,249 @@
+﻿@model SZDWebSite.ViewModels.HomeNewsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+
+<link rel="stylesheet" href="~/css/index.css">
+<link rel="stylesheet" type="text/css" href="~/css/jquery.vm-carousel.css">
+<script src="~/js/modernizr.js"></script>
+
+
+
+<div id="myCarousel" class="carousel slide  szd-banner" data-ride="carousel" data-interval="5000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/index/banner1.png" class="img-responsive" />
+        </div>
+        <div class="item">
+            <img src="~/images/index/banner2.png" alt="Visual Studio" class="img-responsive" />
+        </div>
+        <div class="item">
+            <img src="~/images/index/banner3.png" alt="Visual Studio" class="img-responsive" />
+        </div>
+    </div>
+
+</div>
+
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+<div class="pi-section-white">
+    <div class="container">
+        <div class="row padding-40">
+            <div class="col-md-6 col-sm-6">
+                <h4 class="body-title">
+                    关于我们
+                </h4>
+                <p>成都蜀之鼎环保科技有限公司成立于2017年，坐落于有“香城宝地”美誉的新都区，致力于环保专用智能设备及配套软件系统的自主研发、销售与运营。公司以市场需求为导向,在传统环卫服务业的基础上，运用物联网、移动互联网、云计算等技术，以智能终端为载体，将最先进的信息化技术应用于智慧环卫中，推出了满足环卫作业发展的全面及多元化的解决方案。</p>
+                <p>公司已形成了完善的技术研发、生产、销售及运营等专业团队，从而保证了整个项目从设计到执行的严谨性、科学性和规范性。研发团队主要由具有多年软、硬件研发及互联网行业背景的资深人员组成；运营团队拥有多年的环卫行业知识积累。公司现已申请并拥有多项商标、专利、软件著作权和作品著作权。</p>
+                <a href="~/Solution/About" style="" target="_blank" class="readmore-btn">查看更多</a>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <h4 class="body-title">
+                    资源回收
+                </h4>
+                <div class="progress_bar">
+                    <div class="pro-bar">
+                        <span class="progress-bar-inner" style="background-color: #3A9B58;width: 89%;" data-value="89" data-percentage-value="89"><b><img src="~/images/index/fzz.png" />废纸张</b></span>
+                    </div>
+                </div>
+
+                <div class="progress_bar">
+                    <div class="pro-bar">
+                        <span class="progress-bar-inner" style="background-color: #3A9B58;width: 75%;" data-value="75" data-percentage-value="75"><b><img src="~/images/index/fsl.png" />废塑料</b></span>
+                    </div>
+                </div>
+                <div class="progress_bar">
+                    <div class="pro-bar">
+                        <span class="progress-bar-inner" style="background-color: #3A9B58;width: 65%;" data-value="65" data-percentage-value="65"><b><img src="~/images/index/fbl.png" />废玻璃</b></span>
+                    </div>
+                </div>
+                <div class="progress_bar">
+                    <div class="pro-bar">
+                        <span class="progress-bar-inner" style="background-color: #3A9B58;width: 95%;" data-value="95" data-percentage-value="95"><b><img src="~/images/index/fjs.png" />废金属</b></span>
+                    </div>
+                </div>
+
+                <div class="progress_bar">
+                    <div class="pro-bar">
+                        <span class="progress-bar-inner" style="background-color: #3A9B58; width: 35%;" data-value="95" data-percentage-value="95"><b><img src="~/images/index/fzw.png" />废织物</b></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+         
+    </div>
+</div>
+
+<div class="yfcp">
+    <div class="container">
+       <h4 class="body-title">
+            研发产品
+        </h4>
+
+        <div class="row">
+
+            <ul class="vmcarousel-normal">
+                <li class="img-center"><a href="#"><img src="~/images/product-1.png" alt="" width="300"><span>智能分类箱一代</span></a></li>
+                <li class="img-center"><a href="#"><img src="~/images/product-1.png" alt="" width="300"><span>智能分类箱二代</span></a></li>
+                <li class="img-center"><a href="#"><img src="~/images/product-1.png" alt="" width="300"><span>智能分拣秤一代</span></a></li>
+                <li class="img-center"><a href="#"><img src="~/images/product-1.png" alt="" width="300"><span>智能分拣秤二代</span></a></li>
+                <li class="img-center"><a href="#"><img src="~/images/product-1.png" alt="" width="300"><span>垃圾袋发放机及积分兑换一体机</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+<div class="gg padding-40">
+    <div class="container">
+        <div class="row text-center">
+            <h3>为环卫运营商提供专业的垃圾分类整体方案，打造现代化的环卫运营模式！</h3>
+            <h5><b>咨询热线: 028-83972295</b></h5>
+        </div>
+    </div>
+</div>
+<!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+<div class="container jsfw">
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="jsfw-g">
+
+                <div class="jsfw-icon">
+                    <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                </div>
+
+                <div class="jsfw-text">
+
+                    <h4><b>解决方案</b></h4>
+
+                    <p>
+                        公司在传统环卫服务业的基础上，运用物联网、移动互联网、云计算等技术，以智能终端为载体，全面发展信息化云平台。
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="jsfw-g">
+
+                <div class="jsfw-icon">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                </div>
+
+                <div class="jsfw-text">
+
+                    <h4><b>设备研发</b></h4>
+
+                    <p>
+                        公司拥有多年研发经验的硬件研发人员，进行硬件的研发设计；并与箱体制造商建立了密切的合作关系，进行箱体外壳的生产制造。
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="jsfw-g">
+
+                <div class="jsfw-icon">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+
+                <div class="jsfw-text">
+
+                    <h4><b>托管运维</b></h4>
+
+                    <p>
+                        公司拥有行业经验丰富的专业服务团队，以标准化的服务流程为运营商提供安全、准确、高效、经济的托管运维。
+                    </p>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-40">
+    <div class="container">
+            <h4 class="body-title">
+                新闻资讯
+            </h4>
+
+            <div class="row">
+                @for (int i = 0; i < Model.IndexGsywViewsList.Count(); i++)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card">
+                            <img src="~/Home/getImage?id=@Model.IndexGsywViewsList[i].Nid" alt="news image" class="news-img" style="height:200px;width:100%;">
+                            <div class="card-body">
+                                <h5 class="news-title">@Model.IndexGsywViewsList[i].Ntitle</h5>
+                                <p class="card-text">@Model.IndexGsywViewsList[i].Ndesc</p>
+                                <div>
+                                    <span class="fl-l">@Model.IndexGsywViewsList[i].Ndate.ToString()</span><span class="fl-r read-more"><a href="~/news/Gsyw?id=@Model.IndexGsywViewsList[i].Nid">阅读更多</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+</div>
+
+<div class="sl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-6 img-center">
+                    <i class="fa fa-briefcase fa-3x" aria-hidden="true"></i>
+                    <h2 class="timer" data-to="5" data-speed="1500" data-sl="0"></h2>
+                    <p class="count-text ">服务运营商</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 img-center">
+                    <i class="fa fa-globe fa-3x" aria-hidden="true"></i>
+                    <h2 class="timer" data-to="26" data-speed="1500" data-sl="1"></h2>
+                    <p class="count-text ">安装部署终端</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 img-center">
+                    <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+                    <h2 class="timer" data-to="73" data-speed="1500" data-sl="2"></h2>
+                    <p class="count-text ">居民用户</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 img-center">
+                    <i class="fa fa-recycle fa-3x" aria-hidden="true"></i>
+                    <h2 class="timer" data-to="69" data-speed="1500" data-sl="3"></h2>
+                    <p class="count-text ">资源回收</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/site.js"></script>
+
+<script src="~/js/jquery.vm-carousel.js"></script>
+<script type="text/javascript">
+	jQuery(function($){
+
+
+		  $('.vmcarousel-normal').vmcarousel({
+			 centered: false,
+			 start_item: 0,
+			 autoplay: false,
+			 infinite: false
+		  });
+	   });
+</script>

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Solution>
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+
+    <title>解决方案 - 蜀之鼎网站后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/dashboard.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">蜀之鼎网站后台管理</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>欢迎！@ViewBag.username</a></li>
+                    <li><a href="Exit">退出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="~/Manage/Index"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;新 闻</a></li>
+                <li><a href="~/Manage/Gsjj"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司简介</a></li>
+                <li><a href="~/Manage/Culture"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;公司文化</a></li>
+                <li><a href="~/Manage/Recruit"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;招 聘</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;解决方案</a></li>
+                <li><a href="~/Manage/SolutionType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案类型</a></li>
+                <li class="active"><a href="~/Manage/Solution">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  解决方案信息</a></li>
+                <li><a><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;产品中心</a></li>
+                <li><a href="~/Manage/ProductType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品类型</a></li>
+                <li><a href="~/Manage/Product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>  产品信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2>解决方案 | SOLUTION</h2>
+            <hr align="left" style="background-color:lightblue;height:3px;border:none;width:10%;" />
+            <a href="AddSolution"><button class="btn btn-success">添加解决方案</button></a>
+            <br /><br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>排序</th>
+                        <th>解决方法名</th>
+                        <th>描述</th>
+                        <th>所属类型</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Order</td>
+                            <td>@item.Name</td>
+                            <td>@(item.Desc)</td>
+                            <td>@item.SolutionTypes.Type</td>
+                            <td><a href="EditSolution?id=@item.ID"><button class="btn btn-info">编辑</button></a>&nbsp;<a href="DeleteSolution?id=@item.ID"><button class="btn btn-danger">删除</button></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+
+        </div>
+    </div>
+</body>
+
+</html>
