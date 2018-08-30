@@ -16,6 +16,7 @@ ORM采用EntityFramework 6
 自行定制前台样式后可用作各类企业官网
 
 Model已经生成为Dll文件打包NuGet，自定义Model请自行制作Dll文件
+![image](https://github.com/czhiemma/SZDSite/blob/master/%E5%AD%98readme%E5%9B%BE%E7%89%87%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4/nuget.png)
 
 目前已上线 http://www.szd-eco.com
 
