@@ -1,13 +1,13 @@
 # SZDSite
 某环保科技有限公司 官网
 
-平台：.NET Framework 4.6.2
+基于.NET Framework 4.6.2
 
 ASP.NET Core MVC
 
 DataBase：SqlServer 2012
 
-ORM采用EntityFramework 6
+ORM：EntityFramework 6
 
 后台具有公司简介、企业文化、人才招聘的UEditor富文本编辑功能
 
