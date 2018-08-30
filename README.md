@@ -21,6 +21,8 @@ Model已经生成为Dll文件打包NuGet，自定义Model请自行制作Dll文�
 clone本地后请修改appsettings.json中的数据库链接字符串
 ![image](https://github.com/czhiemma/SZDSite/blob/master/%E5%AD%98readme%E5%9B%BE%E7%89%87%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4/dbconn.png)
 
+** 请使用Visual Studio 2015导入项目，VS2017可能出现错误，另外因为VS2015运行Core项目可能遇到问题，一般Google可以解决 **
+
 目前已上线 http://www.szd-eco.com
 
 如果不想二次开发但想快速搭建类似企业官网，提供有偿帮助： ichenzihao@Gmail.com
